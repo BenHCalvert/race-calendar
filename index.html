@@ -3,83 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ben Calvert's race calendar — MTB, trail running, and skimo events across the 2026–2027 seasons.">
 <title>Ben Calvert — Race Calendar</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* Calendar-specific overrides */
+.hero{grid-template-columns:1fr 190px}
 
-:root{
-  --ink:#0f62a0;
-  --ink-pale:rgba(15,98,160,0.07);
-  --ink-mid:rgba(15,98,160,0.18);
-  --dash:rgba(15,98,160,0.3);
-  --bg:#fff;
-}
-
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Space Mono','Courier New',monospace;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
-}
 @keyframes lineDraw{
   from{opacity:0}to{opacity:1}
-}
-@keyframes blink{
-  0%,100%{opacity:1}50%{opacity:0.3}
-}
-
-/* NAV */
-nav{
-  padding:18px 52px;
-  border-bottom:1px dashed var(--dash);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  animation:fadeUp 0.5s ease both;
-}
-.n-brand{
-  font-size:13px;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;
-}
-.n-links{display:flex;gap:40px}
-.n-links a{
-  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-  text-decoration:none;color:var(--ink);opacity:0.65;
-  transition:opacity 0.15s;
-}
-.n-links a:hover{opacity:1}
-
-/* HERO */
-.hero{
-  padding:60px 52px 52px;
-  border-bottom:1px dashed var(--dash);
-  display:grid;
-  grid-template-columns:1fr 190px;
-  align-items:end;
-  gap:40px;
-  animation:fadeUp 0.5s 0.1s ease both;
-}
-h1{
-  font-size:clamp(54px,9vw,84px);
-  font-weight:700;
-  text-transform:uppercase;
-  line-height:0.92;
-  letter-spacing:-0.025em;
-}
-.hero-meta{
-  font-size:10px;
-  line-height:2.1;
-  letter-spacing:0.06em;
-  text-align:right;
-  padding-bottom:6px;
-  opacity:0.75;
 }
 
 /* MAP */
@@ -87,13 +20,6 @@ h1{
   padding:48px 52px;
   border-bottom:1px dashed var(--dash);
   animation:fadeUp 0.5s 0.2s ease both;
-}
-.s-label{
-  display:block;
-  font-size:10px;font-weight:700;
-  letter-spacing:0.16em;text-transform:uppercase;
-  text-decoration:underline;
-  margin-bottom:28px;
 }
 .map-frame{
   border:1px solid var(--ink);
@@ -134,10 +60,7 @@ h1{
   font-family:'Space Mono','Courier New',monospace;
   font-size:11px;letter-spacing:0.12em;opacity:0.2;
 }
-.grid-ln{
-  stroke:var(--ink);stroke-width:0.3;
-  stroke-dasharray:2 14;opacity:0.25;
-}
+.grid-ln{stroke:var(--ink);stroke-width:0.3;stroke-dasharray:2 14;opacity:0.25}
 .coord-lbl{
   fill:var(--ink);
   font-family:'Space Mono','Courier New',monospace;
@@ -145,23 +68,18 @@ h1{
 }
 
 /* RACE LIST */
-.race-list{
-  animation:fadeUp 0.5s 0.3s ease both;
-}
+.race-list{animation:fadeUp 0.5s 0.3s ease both}
 .race-item{
   padding:44px 52px;
   border-bottom:1px dashed var(--dash);
   display:grid;
   grid-template-columns:170px 1fr 148px;
-  gap:48px;
-  align-items:start;
+  gap:48px;align-items:start;
   transition:background 0.2s;
 }
 .race-item:hover{background:var(--ink-pale)}
 .race-item.a-race{background:var(--ink-pale)}
 .race-item.a-race:hover{background:var(--ink-mid)}
-
-.ri-left{}
 .ri-num{
   display:block;font-size:10px;font-weight:700;
   letter-spacing:0.14em;text-transform:uppercase;
@@ -169,16 +87,9 @@ h1{
 }
 .ri-date{
   font-size:clamp(26px,3vw,34px);font-weight:700;
-  text-transform:uppercase;line-height:1.05;
-  letter-spacing:-0.02em;
+  text-transform:uppercase;line-height:1.05;letter-spacing:-0.02em;
 }
-.ri-type{
-  font-size:10px;letter-spacing:0.08em;
-  text-transform:uppercase;margin-top:12px;
-  opacity:0.55;
-}
-
-.ri-center{}
+.ri-type{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;margin-top:12px;opacity:0.55}
 .ri-name{
   font-size:15px;font-weight:700;
   text-transform:uppercase;text-decoration:underline;
@@ -186,37 +97,18 @@ h1{
 }
 .ri-loc{font-size:12px;margin-bottom:16px;opacity:0.6}
 .ri-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.tag{
-  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
-  border:1px solid var(--ink);padding:3px 8px;opacity:0.8;
-}
 .ri-desc{font-size:11px;line-height:1.9;opacity:0.65}
 .ri-goal{
   margin-top:14px;font-size:13px;font-weight:700;
   text-transform:uppercase;letter-spacing:0.04em;
   animation:blink 2.5s ease-in-out infinite;
 }
-
-.ri-right{
-  font-size:10px;line-height:2.1;
-  letter-spacing:0.06em;text-align:right;
-  opacity:0.7;padding-top:2px;
-}
-
-footer{
-  padding:22px 52px;
-  border-top:1px solid var(--dash);
-  display:flex;justify-content:space-between;
-  font-size:10px;letter-spacing:0.07em;opacity:0.55;
-  animation:fadeUp 0.5s 0.4s ease both;
-}
+.ri-right{font-size:10px;line-height:2.1;letter-spacing:0.06em;text-align:right;opacity:0.7;padding-top:2px}
 
 @media(max-width:680px){
-  nav,.hero,.map-sec,.race-item,footer{padding-left:20px;padding-right:20px}
-  .hero,.race-item{grid-template-columns:1fr}
-  .hero-meta{text-align:left}
+  .map-sec{padding-left:20px;padding-right:20px}
+  .race-item{padding-left:20px;padding-right:20px;grid-template-columns:1fr}
   .ri-right{text-align:left}
-  .n-links{display:none}
 }
 </style>
 </head>
@@ -225,11 +117,13 @@ footer{
 <nav>
   <div class="n-brand">Ben Calvert</div>
   <div class="n-links">
-    <a href="./">Calendar</a>
+    <a href="./" class="active">Calendar</a>
     <a href="training.html">Training</a>
     <a href="profile.html">Profile</a>
   </div>
 </nav>
+
+<main>
 
 <div class="hero">
   <h1>Race<br>Calendar</h1>
@@ -243,9 +137,11 @@ footer{
 </div>
 
 <div class="map-sec">
-  <span class="s-label">Event Locations — Western United States</span>
+  <h2 class="s-label">Event Locations — Western United States</h2>
   <div class="map-frame">
-    <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg"
+         role="img" aria-labelledby="map-title">
+      <title id="map-title">Event locations across the western United States, from Washington to Colorado</title>
 
       <!-- Blueprint grid (every 2°) -->
       <line class="grid-ln" x1="0" y1="70" x2="800" y2="70"/>
@@ -270,26 +166,26 @@ footer{
       <text class="coord-lbl" x="640" y="452">109°W</text>
       <text class="coord-lbl" x="770" y="452">105°W</text>
 
-      <!-- Washington (49N-46N, 124W-117W) -->
+      <!-- Washington -->
       <path class="state state-active" d="M 38,0 L 304,0 L 304,114 L 38,114 Z"/>
-      <!-- Oregon (46N-42N, 124W-117W) -->
+      <!-- Oregon -->
       <path class="state" d="M 38,114 L 304,114 L 304,254 L 38,254 Z"/>
-      <!-- California (42N-37N west coast strip, 124W-114W) — clipped -->
+      <!-- California -->
       <path class="state" d="M 38,254 L 190,254 L 190,420 L 0,420 L 0,290 Z"/>
-      <!-- Nevada (42N-37N, 120W-114W) -->
+      <!-- Nevada -->
       <path class="state" d="M 190,254 L 419,254 L 419,420 L 190,420 Z"/>
-      <!-- Idaho (panhandle: 49N-46N narrow; main: 46N-42N wider) -->
+      <!-- Idaho -->
       <path class="state state-active" d="M 304,0 L 419,0 L 419,114 L 533,114 L 533,254 L 304,254 L 304,114 Z"/>
-      <!-- Montana (49N-45N, 116W-104W) -->
+      <!-- Montana -->
       <path class="state" d="M 343,0 L 800,0 L 800,140 L 533,140 L 533,114 L 419,114 L 419,0 Z"/>
-      <!-- Wyoming (45N-41N, 111W-104W) -->
+      <!-- Wyoming -->
       <path class="state" d="M 533,140 L 800,140 L 800,280 L 533,280 L 533,140 Z"/>
-      <!-- Utah (42N-37N, 114W-109W) -->
+      <!-- Utah -->
       <path class="state" d="M 419,254 L 610,254 L 610,420 L 419,420 Z"/>
-      <!-- Colorado (41N-37N, 109W-102W) -->
+      <!-- Colorado -->
       <path class="state state-active" d="M 610,280 L 800,280 L 800,420 L 610,420 Z"/>
 
-      <!-- State name labels -->
+      <!-- State labels -->
       <text class="mlbl-state" x="171" y="60" text-anchor="middle">WASHINGTON</text>
       <text class="mlbl-state" x="171" y="190" text-anchor="middle">OREGON</text>
       <text class="mlbl-state" x="100" y="345" text-anchor="middle">CALIFORNIA</text>
@@ -300,17 +196,13 @@ footer{
       <text class="mlbl-state" x="514" y="345" text-anchor="middle">UTAH</text>
       <text class="mlbl-state" x="705" y="355" text-anchor="middle">COLORADO</text>
 
-      <!-- Route lines connecting events -->
-      <!-- Leavenworth → Eagle -->
+      <!-- Route lines -->
       <line class="route route-1" x1="164" y1="49" x2="328" y2="185"/>
-      <!-- Eagle → Hailey -->
       <line class="route route-1" x1="328" y1="185" x2="408" y2="192"/>
-      <!-- Hailey → Mt Borah -->
       <line class="route route-2" x1="408" y1="192" x2="427" y2="171"/>
-      <!-- Mt Borah → Crested Butte -->
       <line class="route route-2" x1="427" y1="171" x2="690" y2="350"/>
 
-      <!-- Leavenworth, WA — A Race marker (also Enchantments) -->
+      <!-- Leavenworth, WA -->
       <circle class="mdot" cx="164" cy="49" r="5.5"/>
       <circle class="mring" cx="164" cy="49" r="11"/>
       <circle class="mring" cx="164" cy="49" r="17" opacity="0.45"/>
@@ -318,7 +210,7 @@ footer{
       <text class="mlbl-sub" x="179" y="53">JUN 13–15 · LBF</text>
       <text class="mlbl-sub" x="179" y="65">ENCHANTMENTS · SEP–OCT</text>
 
-      <!-- Central Idaho cluster — dots only; labels in detail inset below -->
+      <!-- Central Idaho cluster — dots only; labels in detail inset -->
       <circle class="mdot" cx="328" cy="185" r="3.2"/>
       <circle class="mdot" cx="392" cy="179" r="3.2"/>
       <circle class="mdot" cx="408" cy="192" r="3.2"/>
@@ -328,61 +220,47 @@ footer{
       <rect x="315" y="158" width="128" height="50" fill="none"
             stroke="var(--ink)" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.85"/>
 
-      <!-- Connector lines from extent box to inset corners -->
+      <!-- Connector lines to inset -->
       <line x1="315" y1="208" x2="10" y2="220" stroke="var(--ink)" stroke-width="0.5"
             stroke-dasharray="2 3" opacity="0.5"/>
       <line x1="443" y1="208" x2="360" y2="220" stroke="var(--ink)" stroke-width="0.5"
             stroke-dasharray="2 3" opacity="0.5"/>
 
-      <!-- ============ INSET: Central Idaho detail ============ -->
+      <!-- INSET: Central Idaho detail -->
       <g>
-        <!-- Inset background panel -->
         <rect x="10" y="220" width="350" height="220" fill="var(--bg)"
               stroke="var(--ink)" stroke-width="0.9"/>
-        <!-- Inset interior tint -->
-        <rect x="10" y="220" width="350" height="220" class="state state-active"
-              stroke="none"/>
+        <rect x="10" y="220" width="350" height="220" class="state state-active" stroke="none"/>
 
-        <!-- Inset header -->
         <text x="20" y="237" font-family="'Space Mono','Courier New',monospace"
               font-size="9" font-weight="700" letter-spacing="0.16em"
               fill="var(--ink)" style="text-decoration:underline">DETAIL — CENTRAL IDAHO</text>
 
-        <!-- Inset coord labels -->
         <text class="coord-lbl" x="20" y="432">116.6°W</text>
         <text class="coord-lbl" x="350" y="432" text-anchor="end">113.4°W</text>
 
-        <!-- Inset routes (per-deg lon=103, lat=167; origin x=20+, y=245+) -->
-        <!-- Eagle (43.7,116.4): x=41, y=362 -->
-        <!-- Galena (43.88,114.71): x=215, y=332 -->
-        <!-- Hailey (43.5,114.3): x=257, y=395 -->
-        <!-- Mt Borah (44.1,113.8): x=308, y=295 -->
         <line class="route" x1="41" y1="362" x2="257" y2="395" style="animation-delay:1.4s"/>
         <line class="route" x1="257" y1="395" x2="215" y2="332" style="animation-delay:1.5s"/>
         <line class="route" x1="215" y1="332" x2="308" y2="295" style="animation-delay:1.6s"/>
 
-        <!-- Eagle -->
         <circle class="mdot" cx="41" cy="362" r="4"/>
         <text class="mlbl" x="51" y="358">EAGLE</text>
         <text class="mlbl-sub" x="51" y="370">MAY 2 · XC</text>
 
-        <!-- Galena -->
         <circle class="mdot" cx="215" cy="332" r="4"/>
         <text class="mlbl" x="225" y="328">GALENA</text>
         <text class="mlbl-sub" x="225" y="340">JUL 18 · GRINDER XC</text>
 
-        <!-- Hailey -->
         <circle class="mdot" cx="257" cy="395" r="4"/>
         <text class="mlbl" x="267" y="404">HAILEY</text>
         <text class="mlbl-sub" x="267" y="416">MAY 12 · MAY 26–27 · STXC</text>
 
-        <!-- Mt Borah -->
         <circle class="mdot" cx="308" cy="295" r="4"/>
         <text class="mlbl" x="300" y="291" text-anchor="end">MT BORAH</text>
         <text class="mlbl-sub" x="300" y="303" text-anchor="end">JUL–SEP · TRAIL RUN</text>
       </g>
 
-      <!-- Crested Butte, CO — Grand Traverse -->
+      <!-- Crested Butte, CO -->
       <circle class="mdot" cx="690" cy="350" r="5.5"/>
       <circle class="mring" cx="690" cy="350" r="11"/>
       <circle class="mring" cx="690" cy="350" r="17" opacity="0.45"/>
@@ -395,7 +273,7 @@ footer{
 
 <div class="race-list">
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 01</span>
       <div class="ri-date">SAT<br>MAY 2</div>
@@ -418,9 +296,9 @@ footer{
       DIST: ~15 MI<br>
       VERT: ~1,770 FT
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 02</span>
       <div class="ri-date">TUE<br>MAY 12</div>
@@ -442,9 +320,9 @@ footer{
       SESSION: EVENING<br>
       DRIVE: ~2 HR
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Events 03–04</span>
       <div class="ri-date">MAY<br>26–27</div>
@@ -467,9 +345,9 @@ footer{
       PHASE: SHARPEN<br>
       −17 DAYS TO A
     </div>
-  </div>
+  </article>
 
-  <div class="race-item a-race">
+  <article class="race-item a-race">
     <div class="ri-left">
       <span class="ri-num">Event 05 — A Race</span>
       <div class="ri-date">JUN<br>13–15</div>
@@ -494,9 +372,9 @@ footer{
       PREV: TOP 10<br>
       TARGET: TOP 5
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 06</span>
       <div class="ri-date">SAT<br>JUL 18</div>
@@ -519,9 +397,9 @@ footer{
       ELEV: ~7,500 FT<br>
       DRIVE: ~3 HR
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 07</span>
       <div class="ri-date">SUMMER<br>TBD</div>
@@ -544,9 +422,9 @@ footer{
       VERT: ~5,300 FT<br>
       WINDOW: JUL–SEP
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 08</span>
       <div class="ri-date">SEP–OCT<br>TBD</div>
@@ -569,9 +447,9 @@ footer{
       VERT: ~4,500 FT<br>
       WINDOW: SEP–OCT
     </div>
-  </div>
+  </article>
 
-  <div class="race-item">
+  <article class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 09</span>
       <div class="ri-date">MAR<br>2027</div>
@@ -594,9 +472,11 @@ footer{
       VERT: ~6,800 FT<br>
       START: MIDNIGHT
     </div>
-  </div>
+  </article>
 
 </div>
+
+</main>
 
 <footer>
   <span>09 EVENTS · 03 DISCIPLINES · 02 SEASONS</span>

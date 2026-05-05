@@ -3,86 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ben Calvert athlete profile — performance benchmarks, 2026–2027 goals, and home terrain in Boise, Idaho.">
 <title>Ben Calvert — Athlete Profile</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* Profile-specific overrides */
+.s-sub{margin:32px 0 16px}
 
-:root{
-  --ink:#0f62a0;
-  --ink-pale:rgba(15,98,160,0.07);
-  --ink-mid:rgba(15,98,160,0.18);
-  --dash:rgba(15,98,160,0.3);
-  --bg:#fff;
-}
-
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Space Mono','Courier New',monospace;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes blink{
-  0%,100%{opacity:1}50%{opacity:0.3}
-}
-
-nav{
-  padding:18px 52px;
-  border-bottom:1px dashed var(--dash);
-  display:flex;align-items:center;justify-content:space-between;
-  animation:fadeUp 0.5s ease both;
-}
-.n-brand{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
-.n-links{display:flex;gap:40px}
-.n-links a{
-  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-  text-decoration:none;color:var(--ink);opacity:0.65;transition:opacity 0.15s;
-}
-.n-links a:hover,.n-links a.active{opacity:1}
-.n-links a.active{text-decoration:underline}
-
-.hero{
-  padding:60px 52px 52px;
-  border-bottom:1px dashed var(--dash);
-  display:grid;grid-template-columns:1fr 230px;
-  align-items:end;gap:40px;
-  animation:fadeUp 0.5s 0.1s ease both;
-}
-h1{
-  font-size:clamp(54px,9vw,84px);font-weight:700;
-  text-transform:uppercase;line-height:0.92;letter-spacing:-0.025em;
-}
-.hero-meta{
-  font-size:10px;line-height:2.1;letter-spacing:0.06em;
-  text-align:right;padding-bottom:6px;opacity:0.75;
-}
-
-section{
-  padding:48px 52px;
-  border-bottom:1px dashed var(--dash);
-  animation:fadeUp 0.5s 0.2s ease both;
-}
-.s-label{
-  display:block;font-size:10px;font-weight:700;
-  letter-spacing:0.16em;text-transform:uppercase;
-  text-decoration:underline;margin-bottom:28px;
-}
-.s-sub{
-  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
-  font-weight:700;margin:32px 0 16px;opacity:0.75;
-}
-.s-sub:first-child{margin-top:0}
-
-/* Benchmarks tables */
-.bench-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:48px;
-}
+/* Benchmarks */
+.bench-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 .bench-table{width:100%;border-collapse:collapse;font-size:11px}
 .bench-table th{
   text-align:left;font-size:9px;letter-spacing:0.12em;
@@ -91,8 +21,7 @@ section{
 }
 .bench-table td{
   padding:11px 8px 11px 0;
-  border-bottom:1px dashed var(--dash);
-  vertical-align:top;
+  border-bottom:1px dashed var(--dash);vertical-align:top;
 }
 .bench-table td:first-child{font-weight:700;letter-spacing:-0.01em}
 .bench-table td.val{font-weight:700;opacity:0.9}
@@ -100,19 +29,10 @@ section{
 
 /* Goals */
 .goals{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-.goal{
-  border:1px dashed var(--dash);
-  padding:22px 22px 20px;
-}
+.goal{border:1px dashed var(--dash);padding:22px 22px 20px}
 .goal.priority{border:1px solid var(--ink);background:var(--ink-pale)}
-.g-cat{
-  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
-  opacity:0.55;margin-bottom:10px;
-}
-.g-name{
-  font-size:14px;font-weight:700;text-transform:uppercase;
-  letter-spacing:-0.01em;line-height:1.2;margin-bottom:6px;
-}
+.g-cat{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.55;margin-bottom:10px}
+.g-name{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;line-height:1.2;margin-bottom:6px}
 .g-date{font-size:11px;font-weight:700;opacity:0.7;margin-bottom:12px}
 .g-detail{font-size:10.5px;line-height:1.85;opacity:0.7}
 .g-tag{
@@ -123,111 +43,24 @@ section{
 
 /* Terrain */
 .terrain{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px}
-.ter{
-  padding:18px 0;
-  border-bottom:1px dashed var(--dash);
-  display:grid;grid-template-columns:120px 1fr;gap:20px;
-}
-.ter-cat{
-  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
-  opacity:0.55;font-weight:700;padding-top:2px;
-}
-.ter-name{
-  font-size:13px;font-weight:700;text-transform:uppercase;
-  letter-spacing:-0.01em;margin-bottom:6px;
-}
+.ter{padding:18px 0;border-bottom:1px dashed var(--dash);display:grid;grid-template-columns:120px 1fr;gap:20px}
+.ter-cat{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.55;font-weight:700;padding-top:2px}
+.ter-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:6px}
 .ter-text{font-size:11px;line-height:1.85;opacity:0.7}
 
-.dest{
-  margin-top:28px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
-}
-.dest-item{
-  border:1px dashed var(--dash);
-  padding:16px 14px;
-}
-.dest-name{
-  font-size:11px;font-weight:700;text-transform:uppercase;
-  letter-spacing:-0.01em;margin-bottom:6px;
-}
+.dest{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest-item{border:1px dashed var(--dash);padding:16px 14px}
+.dest-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:6px}
 .dest-note{font-size:10px;opacity:0.6;line-height:1.7}
 
-/* Season grid */
-.season-grid{
-  display:grid;
-  grid-template-columns:90px repeat(12,1fr);
-  border-top:1px solid var(--ink);
-  border-left:1px solid var(--ink);
-}
-.sg-cell{
-  border-right:1px solid var(--ink);
-  border-bottom:1px solid var(--ink);
-  padding:10px 6px;
-  font-size:9.5px;
-  letter-spacing:0.04em;
-  min-height:36px;
-  display:flex;align-items:center;
-}
-.sg-head{
-  font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;font-size:9px;
-  background:var(--ink);color:var(--bg);
-  justify-content:center;
-}
-.sg-row-label{
-  font-weight:700;font-size:9px;letter-spacing:0.1em;
-  text-transform:uppercase;opacity:0.7;
-}
-.sg-cell.sport-mtb{background:rgba(15,98,160,0.55);color:var(--bg);font-weight:700}
-.sg-cell.sport-mtb-sec{background:rgba(15,98,160,0.18)}
-.sg-cell.sport-trail{background:rgba(15,98,160,0.40);color:var(--bg);font-weight:700}
-.sg-cell.sport-trail-sec{background:rgba(15,98,160,0.14)}
-.sg-cell.sport-ski{background:rgba(15,98,160,0.85);color:var(--bg);font-weight:700}
-.sg-cell.sport-ski-sec{background:rgba(15,98,160,0.22)}
-.sg-cell.sport-strength{background:rgba(15,98,160,0.30);color:var(--bg);font-weight:700}
-.sg-legend{
-  margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;
-  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.75;
-}
-.sg-leg{display:flex;align-items:center;gap:8px}
-.sg-swatch{
-  display:inline-block;width:14px;height:14px;
-  border:1px solid var(--ink);
-}
-
-/* Gear */
-.gear-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px}
-.gear{
-  display:grid;grid-template-columns:140px 1fr;gap:16px;
-  padding:14px 0;border-bottom:1px dashed var(--dash);
-}
-.gear-cat{
-  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
-  opacity:0.55;font-weight:700;padding-top:2px;
-}
-.gear-val{font-size:11.5px;line-height:1.7}
-.gear-val.tbd{opacity:0.45;font-style:italic}
-
-footer{
-  padding:22px 52px;
-  border-top:1px solid var(--dash);
-  display:flex;justify-content:space-between;
-  font-size:10px;letter-spacing:0.07em;opacity:0.55;
-  animation:fadeUp 0.5s 0.4s ease both;
-}
-
 @media(max-width:980px){
-  .bench-grid,.terrain,.gear-grid{grid-template-columns:1fr}
-  .goals{grid-template-columns:1fr}
+  .bench-grid,.terrain{grid-template-columns:1fr}
+  .goals{grid-template-columns:1fr 1fr}
   .dest{grid-template-columns:1fr 1fr}
-  .season-grid{grid-template-columns:80px repeat(6,1fr);font-size:8.5px}
-  .season-grid .sg-cell:nth-child(n+8){display:none}
 }
 @media(max-width:680px){
-  nav,.hero,section,footer{padding-left:20px;padding-right:20px}
-  .hero{grid-template-columns:1fr}
-  .hero-meta{text-align:left}
-  .n-links{display:none}
+  .goals{grid-template-columns:1fr}
+  .dest{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -242,6 +75,8 @@ footer{
   </div>
 </nav>
 
+<main>
+
 <div class="hero">
   <h1>Athlete<br>Profile</h1>
   <div class="hero-meta">
@@ -253,9 +88,8 @@ footer{
   </div>
 </div>
 
-<!-- BENCHMARKS -->
 <section>
-  <span class="s-label">Performance Benchmarks</span>
+  <h2 class="s-label">Performance Benchmarks</h2>
 
   <div class="s-sub">Heart Rate</div>
   <table class="bench-table">
@@ -274,11 +108,9 @@ footer{
     <div>
       <div class="s-sub">Running</div>
       <table class="bench-table">
-        <thead>
-          <tr><th>Metric</th><th>Value</th><th>Date</th></tr>
-        </thead>
+        <thead><tr><th>Metric</th><th>Value</th><th>Date</th></tr></thead>
         <tbody>
-<tr><td>Easy trail pace</td><td class="val">8:45–9:20/mi</td><td class="date">2026</td></tr>
+          <tr><td>Easy trail pace</td><td class="val">8:45–9:20/mi</td><td class="date">2026</td></tr>
           <tr><td>Threshold pace</td><td class="val">8:23/mi</td><td class="date">JAN 2026</td></tr>
           <tr><td>5K prediction</td><td class="val">20:37</td><td class="date">MAR 2026</td></tr>
           <tr><td>Half marathon prediction</td><td class="val">1:45:23</td><td class="date">MAR 2026</td></tr>
@@ -290,9 +122,7 @@ footer{
     <div>
       <div class="s-sub">Cycling / MTB</div>
       <table class="bench-table">
-        <thead>
-          <tr><th>Metric</th><th colspan="2">Value</th></tr>
-        </thead>
+        <thead><tr><th>Metric</th><th colspan="2">Value</th></tr></thead>
         <tbody>
           <tr><td>FTP</td><td class="val" colspan="2">Not established · no power meter</td></tr>
           <tr><td>Typical ride</td><td class="val" colspan="2">10–18 mi · 900–2,500 ft · 50–115 min</td></tr>
@@ -303,9 +133,7 @@ footer{
 
       <div class="s-sub">Skiing / BC</div>
       <table class="bench-table">
-        <thead>
-          <tr><th>Metric</th><th colspan="2">Value</th></tr>
-        </thead>
+        <thead><tr><th>Metric</th><th colspan="2">Value</th></tr></thead>
         <tbody>
           <tr><td>Biggest BC day</td><td class="val" colspan="2">17.3 mi · 3,317 ft · 4:54<br><span style="font-weight:400;opacity:0.6">Crested Butte · Feb 2026</span></td></tr>
           <tr><td>Typical BC day</td><td class="val" colspan="2">5–9 mi · 1,500–3,500 ft</td></tr>
@@ -316,19 +144,15 @@ footer{
   </div>
 </section>
 
-<!-- GOALS -->
 <section>
-  <span class="s-label">Goals — 2026 → 2027</span>
+  <h2 class="s-label">Goals — 2026 → 2027</h2>
 
   <div class="goals">
     <div class="goal priority">
       <div class="g-cat">2026 MTB · A-Race</div>
       <div class="g-name">Leavenworth Bike Fest</div>
       <div class="g-date">JUN 13–15, 2026</div>
-      <div class="g-detail">
-        Top-5 finish, Open/Elite category. Previous result: top 10.
-        Three-day festival format · ~5 hr drive from Boise.
-      </div>
+      <div class="g-detail">Top-5 finish, Open/Elite category. Previous result: top 10. Three-day festival format · ~5 hr drive from Boise.</div>
       <span class="g-tag">Top 5 Goal</span>
     </div>
 
@@ -336,10 +160,7 @@ footer{
       <div class="g-cat">2026 Trail</div>
       <div class="g-name">Mt Borah Summit</div>
       <div class="g-date">LATE JUL – SEP 2026</div>
-      <div class="g-detail">
-        Idaho's high point · 12,662 ft summit.
-        8.2 mi RT · 5,300 ft · Chicken-Out Ridge crux.
-      </div>
+      <div class="g-detail">Idaho's high point · 12,662 ft summit. 8.2 mi RT · 5,300 ft · Chicken-Out Ridge crux.</div>
       <span class="g-tag">Date TBD</span>
     </div>
 
@@ -347,10 +168,7 @@ footer{
       <div class="g-cat">2026 Trail</div>
       <div class="g-name">Enchantments Traverse</div>
       <div class="g-date">SEP – EARLY OCT 2026</div>
-      <div class="g-detail">
-        Cascade alpine traverse · ~18.5 mi · 5,500 ft.
-        Aasgard Pass · permit/shuttle logistics.
-      </div>
+      <div class="g-detail">Cascade alpine traverse · ~18.5 mi · 5,500 ft. Aasgard Pass · permit/shuttle logistics.</div>
       <span class="g-tag">Date TBD</span>
     </div>
 
@@ -358,10 +176,7 @@ footer{
       <div class="g-cat">2027 Skimo · A-Race</div>
       <div class="g-name">The Grand Traverse</div>
       <div class="g-date">LATE MAR 2027</div>
-      <div class="g-detail">
-        40 mi · 6,800 ft · Crested Butte → Aspen.
-        Midnight start, teams of 2, point-to-point ski mountaineering.
-      </div>
+      <div class="g-detail">40 mi · 6,800 ft · Crested Butte → Aspen. Midnight start, teams of 2, point-to-point ski mountaineering.</div>
       <span class="g-tag">Season Apex</span>
     </div>
 
@@ -369,10 +184,7 @@ footer{
       <div class="g-cat">2026–27 Skimo · Tune-Up</div>
       <div class="g-name">Pre-GT Race(s)</div>
       <div class="g-date">FEB 2027</div>
-      <div class="g-detail">
-        1–2 skimo races (COSMIC series or Idaho events) for race-pace
-        rehearsal and gear shakedown.
-      </div>
+      <div class="g-detail">1–2 skimo races (COSMIC series or Idaho events) for race-pace rehearsal and gear shakedown.</div>
       <span class="g-tag">Selection TBD</span>
     </div>
 
@@ -380,28 +192,21 @@ footer{
       <div class="g-cat">Logistics</div>
       <div class="g-name">GT Partner</div>
       <div class="g-date">IDENTIFY BY FALL 2026</div>
-      <div class="g-detail">
-        Race requires teams of 2. Must train together, align on pace and
-        gear redundancy. Open recruit.
-      </div>
+      <div class="g-detail">Race requires teams of 2. Must train together, align on pace and gear redundancy. Open recruit.</div>
       <span class="g-tag">Open</span>
     </div>
   </div>
 </section>
 
-<!-- TERRAIN -->
 <section>
-  <span class="s-label">Home Terrain</span>
+  <h2 class="s-label">Home Terrain</h2>
 
   <div class="terrain">
     <div class="ter">
       <div class="ter-cat">MTB</div>
       <div>
         <div class="ter-name">Boise Foothills</div>
-        <div class="ter-text">
-          Technical singletrack · 1,000–3,500 ft gain rides from home.
-          High-quality, year-round access.
-        </div>
+        <div class="ter-text">Technical singletrack · 1,000–3,500 ft gain rides from home. High-quality, year-round access.</div>
       </div>
     </div>
 
@@ -409,10 +214,7 @@ footer{
       <div class="ter-cat">Trail Run</div>
       <div>
         <div class="ter-name">Ridge to Rivers</div>
-        <div class="ter-text">
-          Foothills network · rolling to sustained climbing.
-          Same terrain as MTB, different pace.
-        </div>
+        <div class="ter-text">Foothills network · rolling to sustained climbing. Same terrain as MTB, different pace.</div>
       </div>
     </div>
 
@@ -420,9 +222,7 @@ footer{
       <div class="ter-cat">Gravel</div>
       <div>
         <div class="ter-name">Boise Gravel</div>
-        <div class="ter-text">
-          8th St · Rocky Canyon · The Dump Loop. Mix of pavement, doubletrack, and dirt. Z2 to Z3 depending on route.
-        </div>
+        <div class="ter-text">8th St · Rocky Canyon · The Dump Loop. Mix of pavement, doubletrack, and dirt. Z2 to Z3 depending on route.</div>
       </div>
     </div>
 
@@ -430,9 +230,7 @@ footer{
       <div class="ter-cat">BC Ski</div>
       <div>
         <div class="ter-name">Boise County / Bogus Basin</div>
-        <div class="ter-text">
-          1–2 hr drive to quality lines · home base for winter vert.
-        </div>
+        <div class="ter-text">1–2 hr drive to quality lines · home base for winter vert.</div>
       </div>
     </div>
   </div>
@@ -458,6 +256,7 @@ footer{
   </div>
 </section>
 
+</main>
 
 <footer>
   <span>03 DISCIPLINES · 02 SEASONS · 09 EVENTS</span>

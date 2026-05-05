@@ -1,0 +1,108 @@
+/* ============================================================
+   Ben Calvert — Shared Design System
+   All three pages (index, training, profile) import this file.
+   Page-specific styles live in each HTML file's <style> block.
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#0f62a0;
+  --ink-pale:rgba(15,98,160,0.07);
+  --ink-mid:rgba(15,98,160,0.18);
+  --dash:rgba(15,98,160,0.3);
+  --bg:#fff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes blink{
+  0%,100%{opacity:1}50%{opacity:0.3}
+}
+
+/* NAV */
+nav{
+  padding:18px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:flex;align-items:center;justify-content:space-between;
+  animation:fadeUp 0.5s ease both;
+}
+.n-brand{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.n-links{display:flex;gap:40px}
+.n-links a{
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);opacity:0.65;transition:opacity 0.15s;
+}
+.n-links a:hover,.n-links a.active{opacity:1}
+.n-links a.active{text-decoration:underline}
+
+/* HERO */
+.hero{
+  padding:60px 52px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:grid;
+  grid-template-columns:1fr 230px;
+  align-items:end;gap:40px;
+  animation:fadeUp 0.5s 0.1s ease both;
+}
+h1{
+  font-size:clamp(54px,9vw,84px);font-weight:700;
+  text-transform:uppercase;line-height:0.92;letter-spacing:-0.025em;
+}
+.hero-meta{
+  font-size:10px;line-height:2.1;letter-spacing:0.06em;
+  text-align:right;padding-bottom:6px;opacity:0.75;
+}
+
+/* SECTIONS */
+section{
+  padding:48px 52px;
+  border-bottom:1px dashed var(--dash);
+  animation:fadeUp 0.5s 0.2s ease both;
+}
+h2.s-label{
+  display:block;font-size:10px;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  text-decoration:underline;margin-bottom:28px;
+  /* reset heading defaults */
+  font-size:10px;line-height:inherit;
+}
+.s-sub{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  font-weight:700;margin:28px 0 14px;opacity:0.75;
+}
+.s-sub:first-child{margin-top:0}
+
+/* TAGS */
+.tag{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:3px 8px;opacity:0.8;
+}
+
+/* FOOTER */
+footer{
+  padding:22px 52px;
+  border-top:1px solid var(--dash);
+  display:flex;justify-content:space-between;
+  font-size:10px;letter-spacing:0.07em;opacity:0.55;
+  animation:fadeUp 0.5s 0.4s ease both;
+}
+
+/* MOBILE BASE */
+@media(max-width:680px){
+  nav,footer{padding-left:20px;padding-right:20px}
+  .hero{padding-left:20px;padding-right:20px;grid-template-columns:1fr}
+  .hero-meta{text-align:left}
+  section{padding-left:20px;padding-right:20px}
+  .n-links{display:none}
+}
