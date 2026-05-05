@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben Calvert — Training Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#0f62a0;
+  --ink-pale:rgba(15,98,160,0.07);
+  --ink-mid:rgba(15,98,160,0.18);
+  --dash:rgba(15,98,160,0.3);
+  --bg:#fff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes blink{
+  0%,100%{opacity:1}50%{opacity:0.3}
+}
+
+nav{
+  padding:18px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:flex;align-items:center;justify-content:space-between;
+  animation:fadeUp 0.5s ease both;
+}
+.n-brand{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.n-links{display:flex;gap:40px}
+.n-links a{
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);opacity:0.65;transition:opacity 0.15s;
+}
+.n-links a:hover,.n-links a.active{opacity:1}
+.n-links a.active{text-decoration:underline}
+
+.hero{
+  padding:60px 52px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:grid;grid-template-columns:1fr 260px;
+  align-items:end;gap:40px;
+  animation:fadeUp 0.5s 0.1s ease both;
+}
+h1{
+  font-size:clamp(54px,9vw,84px);font-weight:700;
+  text-transform:uppercase;line-height:0.92;letter-spacing:-0.025em;
+}
+.hero-meta{
+  font-size:10px;line-height:2.1;letter-spacing:0.06em;
+  text-align:right;padding-bottom:6px;opacity:0.75;
+}
+
+section{
+  padding:48px 52px;
+  border-bottom:1px dashed var(--dash);
+  animation:fadeUp 0.5s 0.2s ease both;
+}
+.s-label{
+  display:block;font-size:10px;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  text-decoration:underline;margin-bottom:28px;
+}
+.s-sub{
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  font-weight:700;margin:28px 0 14px;opacity:0.75;
+}
+.s-sub:first-child{margin-top:0}
+
+/* Periodization */
+.periods{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:10px;
+}
+.period{
+  border:1px dashed var(--dash);
+  padding:16px 14px;
+  display:flex;flex-direction:column;
+  min-height:170px;
+  position:relative;
+}
+.period.done{opacity:0.45}
+.period.active{
+  background:var(--ink-pale);
+  border:1px solid var(--ink);
+}
+.period.gt{
+  background:var(--ink);color:var(--bg);
+  border:1px solid var(--ink);
+}
+.period.gt .p-name,.period.gt .p-dates,.period.gt .p-focus{color:var(--bg)}
+.p-num{
+  font-size:9px;letter-spacing:0.14em;
+  text-transform:uppercase;opacity:0.55;margin-bottom:8px;
+}
+.p-name{
+  font-size:12px;font-weight:700;line-height:1.2;
+  text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:6px;
+}
+.p-dates{font-size:9.5px;letter-spacing:0.05em;opacity:0.7;margin-bottom:12px}
+.p-focus{font-size:10px;line-height:1.7;opacity:0.75;margin-bottom:auto}
+.p-active-tag{
+  position:absolute;top:-8px;right:10px;
+  background:var(--bg);padding:0 6px;
+  font-size:8px;letter-spacing:0.16em;font-weight:700;
+  animation:blink 2.2s ease-in-out infinite;
+}
+.p-trophy{
+  position:absolute;top:-8px;right:10px;
+  background:var(--bg);padding:0 6px;color:var(--ink);
+  font-size:9px;letter-spacing:0.1em;font-weight:700;
+  border:1px solid var(--ink);
+}
+
+/* Zones */
+.zones-block{margin-bottom:36px}
+.zone-row{
+  display:grid;
+  grid-template-columns:42px 90px 1fr 110px 1fr;
+  align-items:center;
+  gap:14px;
+  padding:10px 0;
+  border-bottom:1px dashed var(--dash);
+  font-size:11px;
+}
+.zone-row.head{
+  font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  font-weight:700;opacity:0.55;border-bottom:1px solid var(--ink);
+}
+.z-tag{
+  display:inline-block;border:1px solid var(--ink);
+  padding:3px 6px;font-size:9px;font-weight:700;
+  text-align:center;letter-spacing:0.08em;
+}
+.z-bar{
+  height:10px;border:1px solid var(--ink);
+  position:relative;background:var(--bg);
+}
+.z-bar-fill{
+  position:absolute;top:0;bottom:0;left:0;
+  background:var(--ink);
+}
+.z-bpm{font-weight:700;letter-spacing:0.04em}
+.z-purpose{font-size:10.5px;opacity:0.7;line-height:1.6}
+
+.note{
+  margin-top:18px;font-size:10.5px;opacity:0.65;
+  line-height:1.8;border-left:2px solid var(--ink);
+  padding:6px 14px;background:var(--ink-pale);
+}
+
+/* Sessions */
+.sessions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+.session{
+  border:1px dashed var(--dash);
+  padding:22px 22px 20px;
+}
+.sess-name{
+  font-size:13px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.02em;margin-bottom:4px;
+}
+.sess-cat{
+  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  opacity:0.55;margin-bottom:14px;
+}
+.sess-prescr{
+  font-size:11.5px;font-weight:700;line-height:1.7;
+  letter-spacing:-0.01em;margin-bottom:10px;
+}
+.sess-detail{font-size:10.5px;line-height:1.85;opacity:0.7}
+.sess-detail strong{font-weight:700;opacity:1}
+
+/* Load balance */
+.lb-rows{display:grid;gap:14px}
+.lb-row{
+  display:grid;
+  grid-template-columns:140px 80px 1fr 1fr;
+  gap:18px;align-items:center;
+  font-size:11px;
+  padding:14px 0;
+  border-bottom:1px dashed var(--dash);
+}
+.lb-row.head{
+  font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  font-weight:700;opacity:0.55;border-bottom:1px solid var(--ink);
+}
+.lb-status{font-weight:700;letter-spacing:0.05em}
+.lb-status.over{color:var(--ink)}
+.lb-status.short{color:var(--ink);font-weight:700}
+.lb-action{font-size:10.5px;opacity:0.7;line-height:1.6}
+
+/* Principles */
+.principles{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px 28px;
+}
+.principle{
+  display:grid;grid-template-columns:32px 1fr;gap:14px;
+  padding:16px 0;
+  border-bottom:1px dashed var(--dash);
+}
+.pr-num{
+  font-size:11px;font-weight:700;letter-spacing:0.05em;
+  opacity:0.45;
+}
+.pr-text{font-size:11.5px;line-height:1.85}
+.pr-text strong{display:block;margin-bottom:4px;letter-spacing:-0.01em}
+
+.gt-card{
+  margin-top:32px;
+  border:1px solid var(--ink);
+  padding:24px 28px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:14px;
+}
+.gt-stat{
+  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  opacity:0.55;margin-bottom:6px;
+}
+.gt-val{
+  font-size:18px;font-weight:700;letter-spacing:-0.02em;
+  text-transform:uppercase;
+}
+
+footer{
+  padding:22px 52px;
+  border-top:1px solid var(--dash);
+  display:flex;justify-content:space-between;
+  font-size:10px;letter-spacing:0.07em;opacity:0.55;
+  animation:fadeUp 0.5s 0.4s ease both;
+}
+
+@media(max-width:980px){
+  .periods{grid-template-columns:repeat(4,1fr)}
+  .sessions,.principles,.gt-card{grid-template-columns:1fr 1fr}
+  .zone-row{grid-template-columns:42px 80px 1fr 1fr;}
+  .zone-row .z-purpose{display:none}
+  .lb-row{grid-template-columns:120px 70px 1fr;}
+  .lb-row .lb-action{display:none}
+}
+@media(max-width:680px){
+  nav,.hero,section,footer{padding-left:20px;padding-right:20px}
+  .hero{grid-template-columns:1fr}
+  .hero-meta{text-align:left}
+  .n-links{display:none}
+  .periods{grid-template-columns:1fr 1fr}
+  .sessions,.principles,.gt-card{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="n-brand">Ben Calvert</div>
+  <div class="n-links">
+    <a href="./">Calendar</a>
+    <a href="training.html" class="active">Training</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Training<br>Plan</h1>
+  <div class="hero-meta">
+    SEASON 2026–2027<br>
+    FRAMEWORK: UA + TRPM<br>
+    PHASE: MTB BUILD<br>
+    A-RACE: GRAND TRAVERSE MAR 2027
+  </div>
+</div>
+
+<!-- PERIODIZATION -->
+<section>
+  <span class="s-label">Periodization — 12-Month Arc</span>
+
+  <div class="periods">
+    <div class="period done">
+      <span class="p-num">Block 01</span>
+      <div class="p-name">Transition / MTB Base</div>
+      <div class="p-dates">MAR–APR 2026</div>
+      <div class="p-focus">Aerobic base on bike. Re-establish volume after ski season.</div>
+    </div>
+
+    <div class="period active">
+      <span class="p-num">Block 02</span>
+      <span class="p-active-tag">● ACTIVE</span>
+      <div class="p-name">MTB Build</div>
+      <div class="p-dates">MAY–JUN 2026</div>
+      <div class="p-focus">Volume + structured intensity. Tuesday Z4 intervals, Saturday long Z2.</div>
+    </div>
+
+    <div class="period">
+      <span class="p-num">Block 03</span>
+      <div class="p-name">MTB Peak / Race</div>
+      <div class="p-dates">JUL–SEP 2026</div>
+      <div class="p-focus">MTB racing peak (Galena, Borah). Shift toward trail objectives late summer.</div>
+    </div>
+
+    <div class="period">
+      <span class="p-num">Block 04</span>
+      <div class="p-name">Ski Transition</div>
+      <div class="p-dates">OCT–NOV 2026</div>
+      <div class="p-focus">Strength block. Early skinning on snow when available. Drop bike volume.</div>
+    </div>
+
+    <div class="period">
+      <span class="p-num">Block 05</span>
+      <div class="p-name">Ski Base Build</div>
+      <div class="p-dates">DEC 2026 – JAN 2027</div>
+      <div class="p-focus">Massive aerobic vert. Target 15–25k ft/month. Z1/Z2 dominant.</div>
+    </div>
+
+    <div class="period">
+      <span class="p-num">Block 06</span>
+      <div class="p-name">Ski Peak / Skimo Races</div>
+      <div class="p-dates">FEB 2027</div>
+      <div class="p-focus">Race-specific intensity. 1–2 tune-up skimo races (COSMIC/Idaho).</div>
+    </div>
+
+    <div class="period">
+      <span class="p-num">Block 07</span>
+      <div class="p-name">GT Race Prep</div>
+      <div class="p-dates">MAR 2027</div>
+      <div class="p-focus">Taper. Race simulation. Night-tour rehearsal. Gear shakedown.</div>
+    </div>
+
+    <div class="period gt">
+      <span class="p-num">A-Race</span>
+      <span class="p-trophy">GOAL</span>
+      <div class="p-name">Grand Traverse</div>
+      <div class="p-dates">LATE MAR 2027</div>
+      <div class="p-focus">40 mi · 6,800 ft · Crested Butte → Aspen · midnight start.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<section>
+  <span class="s-label">Training Zones</span>
+
+  <div class="zones-block">
+    <div class="s-sub">Running HR Zones — AnT 167 BPM</div>
+    <div class="zone-row head">
+      <span>Zone</span><span>Name</span><span>Range</span><span>BPM</span><span>Purpose</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z1</span>
+      <span>Recovery</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:0%;width:18%;opacity:0.18"></div></div>
+      <span class="z-bpm">&lt;140</span>
+      <span class="z-purpose">Active recovery only</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z2</span>
+      <span>Aerobic</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:18%;width:25%;opacity:0.36"></div></div>
+      <span class="z-bpm">140–150</span>
+      <span class="z-purpose">Base building, long efforts</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z3</span>
+      <span>Tempo</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:43%;width:20%;opacity:0.55"></div></div>
+      <span class="z-bpm">151–162</span>
+      <span class="z-purpose">Threshold development</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z4</span>
+      <span>Threshold</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:63%;width:8%;opacity:0.78"></div></div>
+      <span class="z-bpm">163–167</span>
+      <span class="z-purpose">AnT work, intervals</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z5</span>
+      <span>VO2max</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:71%;width:24%;opacity:1"></div></div>
+      <span class="z-bpm">168–180</span>
+      <span class="z-purpose">Short high-intensity intervals</span>
+    </div>
+  </div>
+
+  <div class="zones-block">
+    <div class="s-sub">Cycling HR Zones — AnT 162 BPM</div>
+    <div class="zone-row head">
+      <span>Zone</span><span>Name</span><span>Range</span><span>BPM</span><span>Purpose</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z1</span>
+      <span>Recovery</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:0%;width:24%;opacity:0.18"></div></div>
+      <span class="z-bpm">&lt;130</span>
+      <span class="z-purpose">Easy spin</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z2</span>
+      <span>Aerobic</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:24%;width:22%;opacity:0.36"></div></div>
+      <span class="z-bpm">130–145</span>
+      <span class="z-purpose">Base building</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z3</span>
+      <span>Tempo</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:46%;width:18%;opacity:0.55"></div></div>
+      <span class="z-bpm">146–157</span>
+      <span class="z-purpose">Threshold development</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z4</span>
+      <span>Threshold</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:64%;width:8%;opacity:0.78"></div></div>
+      <span class="z-bpm">158–162</span>
+      <span class="z-purpose">AnT work</span>
+    </div>
+    <div class="zone-row">
+      <span class="z-tag">Z5</span>
+      <span>VO2max</span>
+      <div class="z-bar"><div class="z-bar-fill" style="left:72%;width:23%;opacity:1"></div></div>
+      <span class="z-bpm">163–175</span>
+      <span class="z-purpose">Hard race efforts</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- SESSIONS -->
+<section>
+  <span class="s-label">Key Session Types</span>
+
+  <div class="sessions">
+    <div class="session">
+      <div class="sess-name">Threshold Intervals</div>
+      <div class="sess-cat">MTB · Build Block · Tuesdays</div>
+      <div class="sess-prescr">3–4 × 8 min @ Z4 · 4 min recovery</div>
+      <div class="sess-detail">
+        Cycling Z4 = <strong>155–162 bpm</strong>. Protected, non-negotiable session.<br>
+        <strong>Purpose:</strong> Fix chronic Aerobic High (Z3–Z4) shortage flagged by Garmin Load Balance.
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="sess-name">VO2max Intervals</div>
+      <div class="sess-cat">MTB · Sharpen · Pre-A-Race</div>
+      <div class="sess-prescr">4 × 4 min @ Z5 · 4 min recovery</div>
+      <div class="sess-detail">
+        Cycling Z5 = <strong>168–175+ bpm</strong>. Introduced in build, peak in sharpen week.<br>
+        <strong>Purpose:</strong> Top-end fitness for short-track and race-day surges.
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="sess-name">Long Z2 Ride</div>
+      <div class="sess-cat">MTB · Saturday Anchor</div>
+      <div class="sess-prescr">2.0–2.5 hr @ Z2 · 1,500–3,000 ft</div>
+      <div class="sess-detail">
+        Avg HR <strong>130–145 bpm</strong>. Foothills singletrack preferred.<br>
+        <strong>Purpose:</strong> Aerobic base, fat adaptation, durability for long race weekends.
+      </div>
+    </div>
+
+    <div class="session">
+      <div class="sess-name">Strength</div>
+      <div class="sess-cat">All Phases · 2–3×/week</div>
+      <div class="sess-prescr">Force Circuit + Upper Drive</div>
+      <div class="sess-detail">
+        High-intensity circuit + upper body. Year-round.<br>
+        <strong>Purpose:</strong> Injury prevention, power, ski-pole specific prep through fall.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOAD BALANCE -->
+<section>
+  <span class="s-label">Load Balance Status — May 2026</span>
+
+  <div class="lb-rows">
+    <div class="lb-row head">
+      <span>Domain</span><span>Status</span><span>Diagnosis</span><span>Action</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-status">Low Aerobic (Z1–Z2)</span>
+      <span class="lb-status over">↑ OVER</span>
+      <span>Above target — too much junk volume</span>
+      <span class="lb-action">Trim easy-zone time. Replace with structured Z2.</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-status">High Aerobic (Z3–Z4)</span>
+      <span class="lb-status short">↓ SHORT</span>
+      <span>Chronically low — primary deficit</span>
+      <span class="lb-action">Tuesday Z4 intervals every week. Non-negotiable.</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-status">Anaerobic (Z5+)</span>
+      <span class="lb-status">✓ ON TARGET</span>
+      <span>STXC races + sharpen blocks cover this</span>
+      <span class="lb-action">Maintain via short-track + 4×4 VO2 work.</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>FLAG</strong> · Garmin status reads "MAINTAINING" rather than "PRODUCTIVE."
+    Root cause = Aerobic High deficit. Fix = protect Tuesday intervals through the build block.
+  </div>
+</section>
+
+<!-- GT PRINCIPLES -->
+<section>
+  <span class="s-label">Grand Traverse — Training Principles (UA Method)</span>
+
+  <div class="principles">
+    <div class="principle">
+      <span class="pr-num">01</span>
+      <div class="pr-text">
+        <strong>Vert is the metric.</strong>
+        In ski season, track feet climbed — not miles. Distance lies on snow.
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">02</span>
+      <div class="pr-text">
+        <strong>Build vert progressively.</strong>
+        Target 15–20k ft/month by December · 20–25k ft/month by January.
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">03</span>
+      <div class="pr-text">
+        <strong>GT is a Z1/Z2 race.</strong>
+        Aerobic base is everything. The fastest teams move easy for hours.
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">04</span>
+      <div class="pr-text">
+        <strong>Skin technique = free speed.</strong>
+        Efficiency matters as much as fitness. Practice on every outing.
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">05</span>
+      <div class="pr-text">
+        <strong>Rehearse the night.</strong>
+        2–3 night ski tours minimum before race day. Gear, lighting, fueling.
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">06</span>
+      <div class="pr-text">
+        <strong>Partner is a system.</strong>
+        Identify by fall 2026. Train together. Pace, communication, gear redundancy.
+      </div>
+    </div>
+  </div>
+
+  <div class="gt-card">
+    <div>
+      <div class="gt-stat">Distance</div>
+      <div class="gt-val">40 MI</div>
+    </div>
+    <div>
+      <div class="gt-stat">Vertical</div>
+      <div class="gt-val">6,800 FT</div>
+    </div>
+    <div>
+      <div class="gt-stat">Route</div>
+      <div class="gt-val">CB → ASPEN</div>
+    </div>
+    <div>
+      <div class="gt-stat">Start</div>
+      <div class="gt-val">MIDNIGHT</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>UA + TRPM Framework · 12-Month Arc</span>
+  <span>Ben Calvert · Open / Elite</span>
+</footer>
+
+</body>
+</html>
