@@ -104,7 +104,8 @@ h1{
 .map-frame svg{display:block;width:100%}
 
 /* SVG elements */
-.state{fill:rgba(15,98,160,0.06);stroke:var(--ink);stroke-width:0.8}
+.state{fill:rgba(15,98,160,0.015);stroke:var(--ink);stroke-width:0.6;stroke-opacity:0.45}
+.state-active{fill:rgba(15,98,160,0.08);stroke:var(--ink);stroke-width:0.9;stroke-opacity:1}
 .route{
   fill:none;stroke:var(--ink);stroke-width:1;
   stroke-dasharray:5 6;
@@ -118,11 +119,15 @@ h1{
   fill:var(--ink);
   font-family:'Space Mono','Courier New',monospace;
   font-size:9.5px;font-weight:700;
+  paint-order:stroke fill;
+  stroke:var(--bg);stroke-width:3.5;stroke-linejoin:round;
 }
 .mlbl-sub{
   fill:var(--ink);
   font-family:'Space Mono','Courier New',monospace;
-  font-size:8.5px;opacity:0.65;
+  font-size:8.5px;opacity:0.85;
+  paint-order:stroke fill;
+  stroke:var(--bg);stroke-width:3;stroke-linejoin:round;
 }
 .mlbl-state{
   fill:var(--ink);
@@ -232,70 +237,113 @@ footer{
     SEASONS 2026–2027<br>
     CAT. OPEN / ELITE<br>
     DISC. MTB · TRAIL · SKIMO<br>
-    EVENTS: 08<br>
+    EVENTS: 09<br>
     A-RACE GOAL: TOP 5
   </div>
 </div>
 
 <div class="map-sec">
-  <span class="s-label">Event Locations — Pacific Northwest & Mountain West</span>
+  <span class="s-label">Event Locations — Western United States</span>
   <div class="map-frame">
-    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg">
 
-      <!-- Blueprint grid -->
+      <!-- Blueprint grid (every 2°) -->
+      <line class="grid-ln" x1="0" y1="70" x2="800" y2="70"/>
       <line class="grid-ln" x1="0" y1="140" x2="800" y2="140"/>
+      <line class="grid-ln" x1="0" y1="210" x2="800" y2="210"/>
       <line class="grid-ln" x1="0" y1="280" x2="800" y2="280"/>
-      <line class="grid-ln" x1="200" y1="0" x2="200" y2="420"/>
-      <line class="grid-ln" x1="400" y1="0" x2="400" y2="420"/>
-      <line class="grid-ln" x1="600" y1="0" x2="600" y2="420"/>
+      <line class="grid-ln" x1="0" y1="350" x2="800" y2="350"/>
+      <line class="grid-ln" x1="160" y1="0" x2="160" y2="460"/>
+      <line class="grid-ln" x1="320" y1="0" x2="320" y2="460"/>
+      <line class="grid-ln" x1="480" y1="0" x2="480" y2="460"/>
+      <line class="grid-ln" x1="640" y1="0" x2="640" y2="460"/>
 
-      <!-- Lat/lon labels -->
+      <!-- Lat/lon labels (lon: 125°W→0, 104°W→800; lat: 49°N→0, 37°N→420) -->
       <text class="coord-lbl" x="6" y="12">49°N</text>
-      <text class="coord-lbl" x="6" y="152">47°N</text>
-      <text class="coord-lbl" x="6" y="292">45°N</text>
-      <text class="coord-lbl" x="6" y="412">43°N</text>
-      <text class="coord-lbl" x="758" y="412">111°W</text>
-      <text class="coord-lbl" x="358" y="412">117°W</text>
-      <text class="coord-lbl" x="6" y="412" text-anchor="start">122°W</text>
+      <text class="coord-lbl" x="6" y="142">45°N</text>
+      <text class="coord-lbl" x="6" y="282">41°N</text>
+      <text class="coord-lbl" x="6" y="412">37°N</text>
+      <text class="coord-lbl" x="6" y="452">125°W</text>
+      <text class="coord-lbl" x="160" y="452">121°W</text>
+      <text class="coord-lbl" x="320" y="452">117°W</text>
+      <text class="coord-lbl" x="480" y="452">113°W</text>
+      <text class="coord-lbl" x="640" y="452">109°W</text>
+      <text class="coord-lbl" x="770" y="452">105°W</text>
 
-      <!-- Washington (eastern portion) -->
-      <path class="state" d="M 0,0 L 380,0 L 380,196 L 265,190 L 210,196 L 140,214 L 72,214 L 0,214 Z"/>
-
-      <!-- Idaho (panhandle + main body) -->
-      <path class="state" d="M 380,0 L 449,0 L 449,163 L 598,196 L 697,294 L 797,327 L 797,420 L 592,420 L 370,420 L 370,339 L 391,313 L 418,272 L 397,234 L 380,196 Z"/>
+      <!-- Washington (49N-46N, 124W-117W) -->
+      <path class="state state-active" d="M 38,0 L 304,0 L 304,114 L 38,114 Z"/>
+      <!-- Oregon (46N-42N, 124W-117W) -->
+      <path class="state" d="M 38,114 L 304,114 L 304,254 L 38,254 Z"/>
+      <!-- California (42N-37N west coast strip, 124W-114W) — clipped -->
+      <path class="state" d="M 38,254 L 190,254 L 190,420 L 0,420 L 0,290 Z"/>
+      <!-- Nevada (42N-37N, 120W-114W) -->
+      <path class="state" d="M 190,254 L 419,254 L 419,420 L 190,420 Z"/>
+      <!-- Idaho (panhandle: 49N-46N narrow; main: 46N-42N wider) -->
+      <path class="state state-active" d="M 304,0 L 419,0 L 419,114 L 533,114 L 533,254 L 304,254 L 304,114 Z"/>
+      <!-- Montana (49N-45N, 116W-104W) -->
+      <path class="state" d="M 343,0 L 800,0 L 800,140 L 533,140 L 533,114 L 419,114 L 419,0 Z"/>
+      <!-- Wyoming (45N-41N, 111W-104W) -->
+      <path class="state" d="M 533,140 L 800,140 L 800,280 L 533,280 L 533,140 Z"/>
+      <!-- Utah (42N-37N, 114W-109W) -->
+      <path class="state" d="M 419,254 L 610,254 L 610,420 L 419,420 Z"/>
+      <!-- Colorado (41N-37N, 109W-102W) -->
+      <path class="state state-active" d="M 610,280 L 800,280 L 800,420 L 610,420 Z"/>
 
       <!-- State name labels -->
-      <text class="mlbl-state" x="135" y="120" text-anchor="middle">WASHINGTON</text>
-      <text class="mlbl-state" x="570" y="340" text-anchor="middle">IDAHO</text>
+      <text class="mlbl-state" x="171" y="60" text-anchor="middle">WASHINGTON</text>
+      <text class="mlbl-state" x="171" y="190" text-anchor="middle">OREGON</text>
+      <text class="mlbl-state" x="100" y="345" text-anchor="middle">CALIFORNIA</text>
+      <text class="mlbl-state" x="304" y="345" text-anchor="middle">NEVADA</text>
+      <text class="mlbl-state" x="476" y="65" text-anchor="middle">IDAHO</text>
+      <text class="mlbl-state" x="600" y="70" text-anchor="middle">MONTANA</text>
+      <text class="mlbl-state" x="666" y="215" text-anchor="middle">WYOMING</text>
+      <text class="mlbl-state" x="514" y="345" text-anchor="middle">UTAH</text>
+      <text class="mlbl-state" x="705" y="355" text-anchor="middle">COLORADO</text>
 
-      <!-- Route: Eagle → Hailey -->
-      <line class="route route-1" x1="427" y1="348" x2="570" y2="358"/>
+      <!-- Route lines connecting events -->
+      <!-- Leavenworth → Eagle -->
+      <line class="route route-1" x1="164" y1="49" x2="328" y2="185"/>
+      <!-- Eagle → Hailey -->
+      <line class="route route-1" x1="328" y1="185" x2="408" y2="192"/>
+      <!-- Hailey → Mt Borah -->
+      <line class="route route-2" x1="408" y1="192" x2="427" y2="171"/>
+      <!-- Mt Borah → Crested Butte -->
+      <line class="route route-2" x1="427" y1="171" x2="690" y2="350"/>
 
-      <!-- Route: Hailey → Leavenworth -->
-      <line class="route route-2" x1="570" y1="358" x2="128" y2="91"/>
+      <!-- Leavenworth, WA — A Race marker (also Enchantments) -->
+      <circle class="mdot" cx="164" cy="49" r="5.5"/>
+      <circle class="mring" cx="164" cy="49" r="11"/>
+      <circle class="mring" cx="164" cy="49" r="17" opacity="0.45"/>
+      <text class="mlbl" x="179" y="40">LEAVENWORTH, WA</text>
+      <text class="mlbl-sub" x="179" y="53">JUN 13–15 · LBF</text>
+      <text class="mlbl-sub" x="179" y="65">ENCHANTMENTS · SEP–OCT</text>
 
       <!-- Eagle, ID -->
-      <circle class="mdot" cx="427" cy="348" r="4"/>
-      <text class="mlbl" x="436" y="340">EAGLE, ID</text>
-      <text class="mlbl-sub" x="436" y="354">MAY 2</text>
+      <circle class="mdot" cx="328" cy="185" r="4"/>
+      <text class="mlbl" x="337" y="178">EAGLE, ID</text>
+      <text class="mlbl-sub" x="337" y="191">MAY 2</text>
 
       <!-- Hailey, ID -->
-      <circle class="mdot" cx="570" cy="358" r="4"/>
-      <text class="mlbl" x="579" y="350">HAILEY, ID</text>
-      <text class="mlbl-sub" x="579" y="363">MAY 12 · MAY 26–27</text>
+      <circle class="mdot" cx="408" cy="192" r="4"/>
+      <text class="mlbl" x="417" y="208">HAILEY, ID</text>
+      <text class="mlbl-sub" x="417" y="221">MAY 12 · MAY 26–27</text>
 
-      <!-- Leavenworth, WA — A Race marker (also Enchantments Traverse) -->
-      <circle class="mdot" cx="128" cy="91" r="5.5"/>
-      <circle class="mring" cx="128" cy="91" r="11"/>
-      <circle class="mring" cx="128" cy="91" r="17" opacity="0.45"/>
-      <text class="mlbl" x="143" y="82">LEAVENWORTH, WA</text>
-      <text class="mlbl-sub" x="143" y="95">JUN 13–15 · A RACE</text>
-      <text class="mlbl-sub" x="143" y="107">ENCHANTMENTS · SEP–OCT</text>
+      <!-- Galena, ID -->
+      <circle class="mdot" cx="392" cy="179" r="4"/>
+      <text class="mlbl" x="386" y="172" text-anchor="end">GALENA, ID</text>
+      <text class="mlbl-sub" x="386" y="184" text-anchor="end">JUL 18 · GRINDER XC</text>
 
       <!-- Mt Borah, ID -->
-      <circle class="mdot" cx="566" cy="344" r="4"/>
-      <text class="mlbl" x="575" y="336">MT BORAH, ID</text>
-      <text class="mlbl-sub" x="575" y="350">JUL–SEP · TRAIL</text>
+      <circle class="mdot" cx="427" cy="171" r="4"/>
+      <text class="mlbl" x="436" y="164">MT BORAH, ID</text>
+      <text class="mlbl-sub" x="436" y="177">JUL–SEP · TRAIL</text>
+
+      <!-- Crested Butte, CO — Grand Traverse -->
+      <circle class="mdot" cx="690" cy="350" r="5.5"/>
+      <circle class="mring" cx="690" cy="350" r="11"/>
+      <circle class="mring" cx="690" cy="350" r="17" opacity="0.45"/>
+      <text class="mlbl" x="640" y="378" text-anchor="end">CRESTED BUTTE, CO</text>
+      <text class="mlbl-sub" x="640" y="391" text-anchor="end">GRAND TRAVERSE · MAR 2027</text>
 
     </svg>
   </div>
@@ -345,7 +393,7 @@ footer{
     </div>
     <div class="ri-right">
       PRIORITY: C<br>
-      FORMAT: SHORT TRK<br>
+      FORMAT: STXC<br>
       LOCATION: HAILEY<br>
       SESSION: EVENING<br>
       DRIVE: ~2 HR
@@ -370,7 +418,7 @@ footer{
     </div>
     <div class="ri-right">
       PRIORITY: B<br>
-      FORMAT: SHORT TRK<br>
+      FORMAT: STXC<br>
       NIGHTS: 2<br>
       PHASE: SHARPEN<br>
       −17 DAYS TO A
@@ -407,8 +455,33 @@ footer{
   <div class="race-item">
     <div class="ri-left">
       <span class="ri-num">Event 06</span>
+      <div class="ri-date">SAT<br>JUL 18</div>
+      <div class="ri-type">XC · Marathon</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Galena Grinder</div>
+      <div class="ri-loc">Galena Lodge, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">XC</span>
+        <span class="tag">Marathon</span>
+        <span class="tag">Sun Valley</span>
+      </div>
+      <div class="ri-desc">Classic Idaho XC marathon · high-elevation singletrack<br>Recovery race after Leavenworth · ~3 hr drive</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: XC<br>
+      DIST: ~25 MI<br>
+      ELEV: ~7,500 FT<br>
+      DRIVE: ~3 HR
+    </div>
+  </div>
+
+  <div class="race-item">
+    <div class="ri-left">
+      <span class="ri-num">Event 07</span>
       <div class="ri-date">SUMMER<br>TBD</div>
-      <div class="ri-type">Trail · Peak Run</div>
+      <div class="ri-type">Trail Run · Peak</div>
     </div>
     <div class="ri-center">
       <div class="ri-name"><a href="https://www.trailrunproject.com/trail/7085981/mt-borah" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Mt Borah</a></div>
@@ -422,7 +495,7 @@ footer{
     </div>
     <div class="ri-right">
       PRIORITY: B<br>
-      FORMAT: TRAIL<br>
+      FORMAT: TRAIL RUN<br>
       DIST: ~7 MI<br>
       VERT: ~5,300 FT<br>
       WINDOW: JUL–SEP
@@ -431,7 +504,7 @@ footer{
 
   <div class="race-item">
     <div class="ri-left">
-      <span class="ri-num">Event 07</span>
+      <span class="ri-num">Event 08</span>
       <div class="ri-date">SEP–OCT<br>TBD</div>
       <div class="ri-type">Trail · Traverse</div>
     </div>
@@ -447,7 +520,7 @@ footer{
     </div>
     <div class="ri-right">
       PRIORITY: B<br>
-      FORMAT: TRAIL<br>
+      FORMAT: TRAIL RUN<br>
       DIST: ~18 MI<br>
       VERT: ~4,500 FT<br>
       WINDOW: SEP–OCT
@@ -456,7 +529,7 @@ footer{
 
   <div class="race-item">
     <div class="ri-left">
-      <span class="ri-num">Event 08</span>
+      <span class="ri-num">Event 09</span>
       <div class="ri-date">MAR<br>2027</div>
       <div class="ri-type">Skimo · Race</div>
     </div>
@@ -482,8 +555,8 @@ footer{
 </div>
 
 <footer>
-  <span>MTB Build Phase · 7-Week Block</span>
-  <span>Ben Calvert · Open / Elite · 2026</span>
+  <span>09 EVENTS · 03 DISCIPLINES · 02 SEASONS</span>
+  <span>Ben Calvert · Open / Elite</span>
 </footer>
 
 </body>
