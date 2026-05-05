@@ -74,8 +74,7 @@ h2.s-label{
   display:block;font-size:10px;font-weight:700;
   letter-spacing:0.16em;text-transform:uppercase;
   text-decoration:underline;margin-bottom:28px;
-  /* reset heading defaults */
-  font-size:10px;line-height:inherit;
+  line-height:inherit;
 }
 .s-sub{
   font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
