@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben Calvert — Race Calendar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#0f62a0;
+  --ink-pale:rgba(15,98,160,0.07);
+  --ink-mid:rgba(15,98,160,0.18);
+  --dash:rgba(15,98,160,0.3);
+  --bg:#fff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes lineDraw{
+  from{opacity:0}to{opacity:1}
+}
+@keyframes blink{
+  0%,100%{opacity:1}50%{opacity:0.3}
+}
+
+/* NAV */
+nav{
+  padding:18px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  animation:fadeUp 0.5s ease both;
+}
+.n-brand{
+  font-size:13px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+.n-links{display:flex;gap:40px}
+.n-links a{
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);opacity:0.65;
+  transition:opacity 0.15s;
+}
+.n-links a:hover{opacity:1}
+
+/* HERO */
+.hero{
+  padding:60px 52px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:grid;
+  grid-template-columns:1fr 190px;
+  align-items:end;
+  gap:40px;
+  animation:fadeUp 0.5s 0.1s ease both;
+}
+h1{
+  font-size:clamp(54px,9vw,84px);
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:0.92;
+  letter-spacing:-0.025em;
+}
+.hero-meta{
+  font-size:10px;
+  line-height:2.1;
+  letter-spacing:0.06em;
+  text-align:right;
+  padding-bottom:6px;
+  opacity:0.75;
+}
+
+/* MAP */
+.map-sec{
+  padding:48px 52px;
+  border-bottom:1px dashed var(--dash);
+  animation:fadeUp 0.5s 0.2s ease both;
+}
+.s-label{
+  display:block;
+  font-size:10px;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  text-decoration:underline;
+  margin-bottom:28px;
+}
+.map-frame{
+  border:1px solid var(--ink);
+  background:var(--ink-pale);
+  overflow:hidden;
+  position:relative;
+}
+.map-frame svg{display:block;width:100%}
+
+/* SVG elements */
+.state{fill:rgba(15,98,160,0.06);stroke:var(--ink);stroke-width:0.8}
+.route{
+  fill:none;stroke:var(--ink);stroke-width:1;
+  stroke-dasharray:5 6;
+  animation:lineDraw 0.8s ease both;
+}
+.route-1{animation-delay:0.6s}
+.route-2{animation-delay:1.1s}
+.mdot{fill:var(--ink)}
+.mring{fill:none;stroke:var(--ink);stroke-width:0.7;stroke-dasharray:2.5 2.5}
+.mlbl{
+  fill:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:9.5px;font-weight:700;
+}
+.mlbl-sub{
+  fill:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:8.5px;opacity:0.65;
+}
+.mlbl-state{
+  fill:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:11px;letter-spacing:0.12em;opacity:0.2;
+}
+.grid-ln{
+  stroke:var(--ink);stroke-width:0.3;
+  stroke-dasharray:2 14;opacity:0.25;
+}
+.coord-lbl{
+  fill:var(--ink);
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:7.5px;opacity:0.35;
+}
+
+/* RACE LIST */
+.race-list{
+  animation:fadeUp 0.5s 0.3s ease both;
+}
+.race-item{
+  padding:44px 52px;
+  border-bottom:1px dashed var(--dash);
+  display:grid;
+  grid-template-columns:170px 1fr 148px;
+  gap:48px;
+  align-items:start;
+  transition:background 0.2s;
+}
+.race-item:hover{background:var(--ink-pale)}
+.race-item.a-race{background:var(--ink-pale)}
+.race-item.a-race:hover{background:var(--ink-mid)}
+
+.ri-left{}
+.ri-num{
+  display:block;font-size:10px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  text-decoration:underline;margin-bottom:14px;
+}
+.ri-date{
+  font-size:clamp(26px,3vw,34px);font-weight:700;
+  text-transform:uppercase;line-height:1.05;
+  letter-spacing:-0.02em;
+}
+.ri-type{
+  font-size:10px;letter-spacing:0.08em;
+  text-transform:uppercase;margin-top:12px;
+  opacity:0.55;
+}
+
+.ri-center{}
+.ri-name{
+  font-size:15px;font-weight:700;
+  text-transform:uppercase;text-decoration:underline;
+  letter-spacing:0.02em;margin-bottom:8px;
+}
+.ri-loc{font-size:12px;margin-bottom:16px;opacity:0.6}
+.ri-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tag{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:3px 8px;opacity:0.8;
+}
+.ri-desc{font-size:11px;line-height:1.9;opacity:0.65}
+.ri-goal{
+  margin-top:14px;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.04em;
+  animation:blink 2.5s ease-in-out infinite;
+}
+
+.ri-right{
+  font-size:10px;line-height:2.1;
+  letter-spacing:0.06em;text-align:right;
+  opacity:0.7;padding-top:2px;
+}
+
+footer{
+  padding:22px 52px;
+  border-top:1px solid var(--dash);
+  display:flex;justify-content:space-between;
+  font-size:10px;letter-spacing:0.07em;opacity:0.55;
+  animation:fadeUp 0.5s 0.4s ease both;
+}
+
+@media(max-width:680px){
+  nav,.hero,.map-sec,.race-item,footer{padding-left:20px;padding-right:20px}
+  .hero,.race-item{grid-template-columns:1fr}
+  .hero-meta{text-align:left}
+  .ri-right{text-align:left}
+  .n-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="n-brand">Ben Calvert</div>
+  <div class="n-links">
+    <a href="#">Calendar</a>
+    <a href="#">Training</a>
+    <a href="#">Profile</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Race<br>Calendar</h1>
+  <div class="hero-meta">
+    SEASON 2026<br>
+    CAT. OPEN / ELITE<br>
+    DISC. XC MTB<br>
+    EVENTS: 05<br>
+    A-RACE GOAL: TOP 5
+  </div>
+</div>
+
+<div class="map-sec">
+  <span class="s-label">Event Locations — Pacific Northwest</span>
+  <div class="map-frame">
+    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Blueprint grid -->
+      <line class="grid-ln" x1="0" y1="140" x2="800" y2="140"/>
+      <line class="grid-ln" x1="0" y1="280" x2="800" y2="280"/>
+      <line class="grid-ln" x1="200" y1="0" x2="200" y2="420"/>
+      <line class="grid-ln" x1="400" y1="0" x2="400" y2="420"/>
+      <line class="grid-ln" x1="600" y1="0" x2="600" y2="420"/>
+
+      <!-- Lat/lon labels -->
+      <text class="coord-lbl" x="6" y="12">49°N</text>
+      <text class="coord-lbl" x="6" y="152">47°N</text>
+      <text class="coord-lbl" x="6" y="292">45°N</text>
+      <text class="coord-lbl" x="6" y="412">43°N</text>
+      <text class="coord-lbl" x="758" y="412">111°W</text>
+      <text class="coord-lbl" x="358" y="412">117°W</text>
+      <text class="coord-lbl" x="6" y="412" text-anchor="start">122°W</text>
+
+      <!-- Washington (eastern portion) -->
+      <path class="state" d="M 0,0 L 380,0 L 380,196 L 265,190 L 210,196 L 140,214 L 72,214 L 0,214 Z"/>
+
+      <!-- Idaho (panhandle + main body) -->
+      <path class="state" d="M 380,0 L 449,0 L 449,163 L 598,196 L 697,294 L 797,327 L 797,420 L 592,420 L 370,420 L 370,339 L 391,313 L 418,272 L 397,234 L 380,196 Z"/>
+
+      <!-- State name labels -->
+      <text class="mlbl-state" x="135" y="120" text-anchor="middle">WASHINGTON</text>
+      <text class="mlbl-state" x="570" y="340" text-anchor="middle">IDAHO</text>
+
+      <!-- Route: Eagle → Hailey -->
+      <line class="route route-1" x1="427" y1="348" x2="570" y2="358"/>
+
+      <!-- Route: Hailey → Leavenworth -->
+      <line class="route route-2" x1="570" y1="358" x2="128" y2="91"/>
+
+      <!-- Eagle, ID -->
+      <circle class="mdot" cx="427" cy="348" r="4"/>
+      <text class="mlbl" x="436" y="340">EAGLE, ID</text>
+      <text class="mlbl-sub" x="436" y="354">MAY 2</text>
+
+      <!-- Hailey, ID -->
+      <circle class="mdot" cx="570" cy="358" r="4"/>
+      <text class="mlbl" x="579" y="350">HAILEY, ID</text>
+      <text class="mlbl-sub" x="579" y="363">MAY 12 · MAY 26–27</text>
+
+      <!-- Leavenworth, WA — A Race marker -->
+      <circle class="mdot" cx="128" cy="91" r="5.5"/>
+      <circle class="mring" cx="128" cy="91" r="11"/>
+      <circle class="mring" cx="128" cy="91" r="17" opacity="0.45"/>
+      <text class="mlbl" x="143" y="82">LEAVENWORTH, WA</text>
+      <text class="mlbl-sub" x="143" y="95">JUN 13–15 · A RACE</text>
+
+    </svg>
+  </div>
+</div>
+
+<div class="race-list">
+
+  <div class="race-item">
+    <div class="ri-left">
+      <span class="ri-num">Event 01</span>
+      <div class="ri-date">SAT<br>MAY 2</div>
+      <div class="ri-type">XC · 3 Laps</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Eagle Bike Park XC</div>
+      <div class="ri-loc">Eagle, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">XC</span>
+        <span class="tag">Short Track Format</span>
+        <span class="tag">Local</span>
+      </div>
+      <div class="ri-desc">5.0 mi / 590 ft per lap · 3 laps · est. 55–65 min<br>First race of the Leavenworth build block</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: C<br>
+      FORMAT: XC<br>
+      LAPS: 3<br>
+      DIST: ~15 MI<br>
+      VERT: ~1,770 FT
+    </div>
+  </div>
+
+  <div class="race-item">
+    <div class="ri-left">
+      <span class="ri-num">Event 02</span>
+      <div class="ri-date">TUE<br>MAY 12</div>
+      <div class="ri-type">Short Track</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Short Track — Hailey</div>
+      <div class="ri-loc">Hailey, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Short Track</span>
+        <span class="tag">Evening Race</span>
+      </div>
+      <div class="ri-desc">High-intensity circuit · ~20–30 min race effort<br>VO2max stimulus in race conditions · 2 hr drive</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: C<br>
+      FORMAT: SHORT TRK<br>
+      LOCATION: HAILEY<br>
+      SESSION: EVENING<br>
+      DRIVE: ~2 HR
+    </div>
+  </div>
+
+  <div class="race-item">
+    <div class="ri-left">
+      <span class="ri-num">Events 03–04</span>
+      <div class="ri-date">MAY<br>26–27</div>
+      <div class="ri-type">Short Track ×2</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Short Track — Back to Back</div>
+      <div class="ri-loc">Hailey, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Short Track</span>
+        <span class="tag">2 Nights</span>
+        <span class="tag">Sharpen Block</span>
+      </div>
+      <div class="ri-desc">Back-to-back race efforts · sharpen phase<br>2.5 weeks before Leavenworth · peak race readiness</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: SHORT TRK<br>
+      NIGHTS: 2<br>
+      PHASE: SHARPEN<br>
+      −17 DAYS TO A
+    </div>
+  </div>
+
+  <div class="race-item a-race">
+    <div class="ri-left">
+      <span class="ri-num">Event 05 — A Race</span>
+      <div class="ri-date">JUN<br>13–15</div>
+      <div class="ri-type">XC · Open / Elite</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Leavenworth Bike Fest</div>
+      <div class="ri-loc">Leavenworth, Washington</div>
+      <div class="ri-tags">
+        <span class="tag">XC</span>
+        <span class="tag">Open / Elite</span>
+        <span class="tag">A Race</span>
+        <span class="tag">3-Day Festival</span>
+      </div>
+      <div class="ri-desc">Season peak · previous result: top 10 open/elite<br>Drive ~5 hr from Boise · weekend festival format</div>
+      <div class="ri-goal">Goal: Top 5 Finish</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: A<br>
+      CAT: OPEN/ELITE<br>
+      FORMAT: XC<br>
+      PREV: TOP 10<br>
+      TARGET: TOP 5
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>MTB Build Phase · 7-Week Block</span>
+  <span>Ben Calvert · Open / Elite · 2026</span>
+</footer>
+
+</body>
+</html>
