@@ -14,7 +14,7 @@ Personal athlete site covering race calendar, training plan, and athlete profile
 
 ## Tech
 
-Static HTML/CSS — no build step, no frameworks, no JavaScript. Hosted on GitHub Pages.
+Static HTML/CSS — no build step, no frameworks. One small inline script on the calendar moves races into "Past" once their date passes. Hosted on GitHub Pages.
 
 - Single shared stylesheet (`style.css`) for design system tokens, nav, hero, and layout primitives
 - Page-specific styles scoped per-file
