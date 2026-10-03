@@ -8,7 +8,7 @@ Personal athlete site covering race calendar, training plan, and athlete profile
 
 | Page | Description |
 |------|-------------|
-| [Calendar](index.html) | 9-event race calendar from May 2026 through March 2027, with hand-coded SVG map (western US projection with detail inset) |
+| [Calendar](index.html) | 10-event race calendar from May 2026 through July 2027, with hand-coded SVG map (western US projection with detail inset) |
 | [Training](training.html) | 12-month periodization arc, HR zone visualization, key session types, load balance status |
 | [Profile](profile.html) | Performance benchmarks, season goals, home terrain |
 
