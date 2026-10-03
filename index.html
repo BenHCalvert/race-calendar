@@ -105,8 +105,21 @@
 }
 .ri-right{font-size:10px;line-height:2.1;letter-spacing:0.06em;text-align:right;opacity:0.7;padding-top:2px}
 
+/* Upcoming / Past groups */
+.rl-head{padding:48px 52px 0;margin-bottom:0}
+.rl-head-past{opacity:0.5}
+.race-item.past{padding-top:24px;padding-bottom:24px;opacity:0.45;transition:opacity 0.2s,background 0.2s}
+.race-item.past:hover{opacity:0.85}
+.race-item.past.a-race{background:none}
+.race-item.past .ri-date{font-size:clamp(18px,2vw,22px)}
+.race-item.past .ri-desc,
+.race-item.past .ri-tags{display:none}
+.race-item.past .ri-goal{animation:none;font-size:11px}
+.race-item.past .ri-loc{margin-bottom:0}
+
 @media(max-width:680px){
   .map-sec{padding-left:20px;padding-right:20px}
+  .rl-head{padding-left:20px;padding-right:20px}
   .race-item{padding-left:20px;padding-right:20px;grid-template-columns:1fr}
   .ri-right{text-align:left}
 }
@@ -278,81 +291,140 @@
 
 <div class="race-list">
 
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Event 01</span>
-      <div class="ri-date">SAT<br>MAY 2</div>
-      <div class="ri-type">XC · 3 Laps</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name">Eagle Bike Park XC</div>
-      <div class="ri-loc">Eagle, Idaho</div>
-      <div class="ri-tags">
-        <span class="tag">XC</span>
-        <span class="tag">Short Track Format</span>
-        <span class="tag">Local</span>
-      </div>
-      <div class="ri-desc">5.0 mi / 590 ft per lap · 3 laps · est. 55–65 min<br>First race of the Leavenworth build block</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: C<br>
-      FORMAT: XC<br>
-      LAPS: 3<br>
-      DIST: ~15 MI<br>
-      VERT: ~1,770 FT
-    </div>
-  </article>
+  <h2 class="s-label rl-head">Upcoming</h2>
+  <div id="upcoming">
 
-  <article class="race-item">
+  <article class="race-item" data-end="2026-10-10">
     <div class="ri-left">
-      <span class="ri-num">Event 02</span>
-      <div class="ri-date">TUE<br>MAY 12</div>
-      <div class="ri-type">Short Track</div>
+      <span class="ri-num">Event 08</span>
+      <div class="ri-date">SEP–OCT<br>TBD</div>
+      <div class="ri-type">Trail · Traverse</div>
     </div>
     <div class="ri-center">
-      <div class="ri-name">Short Track — Hailey</div>
-      <div class="ri-loc">Hailey, Idaho</div>
+      <div class="ri-name"><a href="https://www.trailrunproject.com/trail/7005246/enchantments-traverse" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Enchantments Traverse</a></div>
+      <div class="ri-loc">Leavenworth, Washington</div>
       <div class="ri-tags">
-        <span class="tag">Short Track</span>
-        <span class="tag">Evening Race</span>
+        <span class="tag">Trail Run</span>
+        <span class="tag">Point-to-Point</span>
+        <span class="tag">Alpine</span>
       </div>
-      <div class="ri-desc">High-intensity circuit · ~20–30 min race effort<br>VO2max stimulus in race conditions · 2 hr drive</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: C<br>
-      FORMAT: STXC<br>
-      LOCATION: HAILEY<br>
-      SESSION: EVENING<br>
-      DRIVE: ~2 HR
-    </div>
-  </article>
-
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Events 03–04</span>
-      <div class="ri-date">MAY<br>26–27</div>
-      <div class="ri-type">Short Track ×2</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name">Short Track — Back to Back</div>
-      <div class="ri-loc">Hailey, Idaho</div>
-      <div class="ri-tags">
-        <span class="tag">Short Track</span>
-        <span class="tag">2 Nights</span>
-        <span class="tag">Sharpen Block</span>
-      </div>
-      <div class="ri-desc">Back-to-back race efforts · sharpen phase<br>2.5 weeks before Leavenworth · peak race readiness</div>
+      <div class="ri-desc">Classic Cascade traverse through Enchantments Lakes<br>Window: September – early October · permit / shuttle logistics</div>
     </div>
     <div class="ri-right">
       PRIORITY: B<br>
-      FORMAT: STXC<br>
-      NIGHTS: 2<br>
-      PHASE: SHARPEN<br>
-      −17 DAYS TO A
+      FORMAT: TRAIL RUN<br>
+      DIST: ~18 MI<br>
+      VERT: ~4,500 FT<br>
+      WINDOW: SEP–OCT
     </div>
   </article>
 
-  <article class="race-item a-race">
+  <article class="race-item" data-end="2027-03-28">
+    <div class="ri-left">
+      <span class="ri-num">Event 09</span>
+      <div class="ri-date">SUN<br>MAR 28</div>
+      <div class="ri-type">Skimo · Race</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name"><a href="https://www.cbnordic.org/thegrandtraverse" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">The Grand Traverse</a></div>
+      <div class="ri-loc">Crested Butte → Aspen, Colorado</div>
+      <div class="ri-tags">
+        <span class="tag">Skimo</span>
+        <span class="tag">Overnight</span>
+        <span class="tag">Teams of 2</span>
+      </div>
+      <div class="ri-desc">40-mile point-to-point ski mountaineering race<br>Midnight start · Crested Butte to Aspen over the Elk Range</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: A<br>
+      FORMAT: SKIMO<br>
+      DIST: ~40 MI<br>
+      VERT: ~6,800 FT<br>
+      START: MIDNIGHT
+    </div>
+  </article>
+
+  <article class="race-item" data-end="2027-07-25">
+    <div class="ri-left">
+      <span class="ri-num">Event 10</span>
+      <div class="ri-date">JUL<br>24–25</div>
+      <div class="ri-type">Trail Run · 30K</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name"><a href="https://ultrasignup.com/register.aspx?did=128858" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Standhope Ultra 30K</a></div>
+      <div class="ri-loc">Pioneer Mountains, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Trail Run</span>
+        <span class="tag">Mountain</span>
+        <span class="tag">2027</span>
+      </div>
+      <div class="ri-desc">Remote, rocky Pioneer Mountains course · high point ~11,100 ft<br>Second half of the 60K route · est. 4–6 hr on feet</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: TRAIL RUN<br>
+      DIST: ~18.6 MI<br>
+      VERT: ~4,300 FT<br>
+      HIGH PT: 11,100 FT
+    </div>
+  </article>
+
+  </div>
+
+  <h2 class="s-label rl-head rl-head-past">Past</h2>
+  <div id="past">
+
+  <article class="race-item past" data-end="2026-09-15">
+    <div class="ri-left">
+      <span class="ri-num">Event 07</span>
+      <div class="ri-date">SUMMER<br>TBD</div>
+      <div class="ri-type">Trail Run · Peak</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name"><a href="https://www.trailrunproject.com/trail/7085981/mt-borah" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Mt Borah</a></div>
+      <div class="ri-loc">Custer County, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Trail Run</span>
+        <span class="tag">Peak</span>
+        <span class="tag">Idaho 12er</span>
+      </div>
+      <div class="ri-desc">Idaho's highest peak · 12,668 ft summit<br>Window: late July – early September · weather-dependent</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: TRAIL RUN<br>
+      DIST: ~7 MI<br>
+      VERT: ~5,300 FT<br>
+      WINDOW: JUL–SEP
+    </div>
+  </article>
+
+  <article class="race-item past" data-end="2026-07-18">
+    <div class="ri-left">
+      <span class="ri-num">Event 06</span>
+      <div class="ri-date">SAT<br>JUL 18</div>
+      <div class="ri-type">XC · Marathon</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Galena Grinder</div>
+      <div class="ri-loc">Galena Lodge, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">XC</span>
+        <span class="tag">Marathon</span>
+        <span class="tag">Sun Valley</span>
+      </div>
+      <div class="ri-desc">Classic Idaho XC marathon · high-elevation singletrack<br>Recovery race after Leavenworth · ~3 hr drive</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: XC<br>
+      DIST: ~25 MI<br>
+      ELEV: ~7,500 FT<br>
+      DRIVE: ~3 HR
+    </div>
+  </article>
+
+  <article class="race-item past a-race" data-end="2026-06-21">
     <div class="ri-left">
       <span class="ri-num">Event 05 — A Race</span>
       <div class="ri-date">JUN<br>19–21</div>
@@ -379,130 +451,81 @@
     </div>
   </article>
 
-  <article class="race-item">
+  <article class="race-item past" data-end="2026-05-27">
     <div class="ri-left">
-      <span class="ri-num">Event 06</span>
-      <div class="ri-date">SAT<br>JUL 18</div>
-      <div class="ri-type">XC · Marathon</div>
+      <span class="ri-num">Events 03–04</span>
+      <div class="ri-date">MAY<br>26–27</div>
+      <div class="ri-type">Short Track ×2</div>
     </div>
     <div class="ri-center">
-      <div class="ri-name">Galena Grinder</div>
-      <div class="ri-loc">Galena Lodge, Idaho</div>
+      <div class="ri-name">Short Track — Back to Back</div>
+      <div class="ri-loc">Hailey, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Short Track</span>
+        <span class="tag">2 Nights</span>
+        <span class="tag">Sharpen Block</span>
+      </div>
+      <div class="ri-desc">Back-to-back race efforts · sharpen phase<br>2.5 weeks before Leavenworth · peak race readiness</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: B<br>
+      FORMAT: STXC<br>
+      NIGHTS: 2<br>
+      PHASE: SHARPEN<br>
+      −17 DAYS TO A
+    </div>
+  </article>
+
+  <article class="race-item past" data-end="2026-05-12">
+    <div class="ri-left">
+      <span class="ri-num">Event 02</span>
+      <div class="ri-date">TUE<br>MAY 12</div>
+      <div class="ri-type">Short Track</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Short Track — Hailey</div>
+      <div class="ri-loc">Hailey, Idaho</div>
+      <div class="ri-tags">
+        <span class="tag">Short Track</span>
+        <span class="tag">Evening Race</span>
+      </div>
+      <div class="ri-desc">High-intensity circuit · ~20–30 min race effort<br>VO2max stimulus in race conditions · 2 hr drive</div>
+    </div>
+    <div class="ri-right">
+      PRIORITY: C<br>
+      FORMAT: STXC<br>
+      LOCATION: HAILEY<br>
+      SESSION: EVENING<br>
+      DRIVE: ~2 HR
+    </div>
+  </article>
+
+  <article class="race-item past" data-end="2026-05-02">
+    <div class="ri-left">
+      <span class="ri-num">Event 01</span>
+      <div class="ri-date">SAT<br>MAY 2</div>
+      <div class="ri-type">XC · 3 Laps</div>
+    </div>
+    <div class="ri-center">
+      <div class="ri-name">Eagle Bike Park XC</div>
+      <div class="ri-loc">Eagle, Idaho</div>
       <div class="ri-tags">
         <span class="tag">XC</span>
-        <span class="tag">Marathon</span>
-        <span class="tag">Sun Valley</span>
+        <span class="tag">Short Track Format</span>
+        <span class="tag">Local</span>
       </div>
-      <div class="ri-desc">Classic Idaho XC marathon · high-elevation singletrack<br>Recovery race after Leavenworth · ~3 hr drive</div>
+      <div class="ri-desc">5.0 mi / 590 ft per lap · 3 laps · est. 55–65 min<br>First race of the Leavenworth build block</div>
     </div>
     <div class="ri-right">
-      PRIORITY: B<br>
+      PRIORITY: C<br>
       FORMAT: XC<br>
-      DIST: ~25 MI<br>
-      ELEV: ~7,500 FT<br>
-      DRIVE: ~3 HR
+      LAPS: 3<br>
+      DIST: ~15 MI<br>
+      VERT: ~1,770 FT
     </div>
   </article>
 
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Event 07</span>
-      <div class="ri-date">SUMMER<br>TBD</div>
-      <div class="ri-type">Trail Run · Peak</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name"><a href="https://www.trailrunproject.com/trail/7085981/mt-borah" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Mt Borah</a></div>
-      <div class="ri-loc">Custer County, Idaho</div>
-      <div class="ri-tags">
-        <span class="tag">Trail Run</span>
-        <span class="tag">Peak</span>
-        <span class="tag">Idaho 12er</span>
-      </div>
-      <div class="ri-desc">Idaho's highest peak · 12,668 ft summit<br>Window: late July – early September · weather-dependent</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: B<br>
-      FORMAT: TRAIL RUN<br>
-      DIST: ~7 MI<br>
-      VERT: ~5,300 FT<br>
-      WINDOW: JUL–SEP
-    </div>
-  </article>
-
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Event 08</span>
-      <div class="ri-date">SEP–OCT<br>TBD</div>
-      <div class="ri-type">Trail · Traverse</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name"><a href="https://www.trailrunproject.com/trail/7005246/enchantments-traverse" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Enchantments Traverse</a></div>
-      <div class="ri-loc">Leavenworth, Washington</div>
-      <div class="ri-tags">
-        <span class="tag">Trail Run</span>
-        <span class="tag">Point-to-Point</span>
-        <span class="tag">Alpine</span>
-      </div>
-      <div class="ri-desc">Classic Cascade traverse through Enchantments Lakes<br>Window: September – early October · permit / shuttle logistics</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: B<br>
-      FORMAT: TRAIL RUN<br>
-      DIST: ~18 MI<br>
-      VERT: ~4,500 FT<br>
-      WINDOW: SEP–OCT
-    </div>
-  </article>
-
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Event 09</span>
-      <div class="ri-date">SUN<br>MAR 28</div>
-      <div class="ri-type">Skimo · Race</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name"><a href="https://www.cbnordic.org/thegrandtraverse" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">The Grand Traverse</a></div>
-      <div class="ri-loc">Crested Butte → Aspen, Colorado</div>
-      <div class="ri-tags">
-        <span class="tag">Skimo</span>
-        <span class="tag">Overnight</span>
-        <span class="tag">Teams of 2</span>
-      </div>
-      <div class="ri-desc">40-mile point-to-point ski mountaineering race<br>Midnight start · Crested Butte to Aspen over the Elk Range</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: A<br>
-      FORMAT: SKIMO<br>
-      DIST: ~40 MI<br>
-      VERT: ~6,800 FT<br>
-      START: MIDNIGHT
-    </div>
-  </article>
-
-  <article class="race-item">
-    <div class="ri-left">
-      <span class="ri-num">Event 10</span>
-      <div class="ri-date">JUL<br>24–25</div>
-      <div class="ri-type">Trail Run · 30K</div>
-    </div>
-    <div class="ri-center">
-      <div class="ri-name"><a href="https://ultrasignup.com/register.aspx?did=128858" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Standhope Ultra 30K</a></div>
-      <div class="ri-loc">Pioneer Mountains, Idaho</div>
-      <div class="ri-tags">
-        <span class="tag">Trail Run</span>
-        <span class="tag">Mountain</span>
-        <span class="tag">2027</span>
-      </div>
-      <div class="ri-desc">Remote, rocky Pioneer Mountains course · high point ~11,100 ft<br>Second half of the 60K route · est. 4–6 hr on feet</div>
-    </div>
-    <div class="ri-right">
-      PRIORITY: B<br>
-      FORMAT: TRAIL RUN<br>
-      DIST: ~18.6 MI<br>
-      VERT: ~4,300 FT<br>
-      HIGH PT: 11,100 FT
-    </div>
-  </article>
+  </div>
 
 </div>
 
@@ -512,6 +535,18 @@
   <span>10 EVENTS · 03 DISCIPLINES · 02 SEASONS</span>
   <span>Ben Calvert · Open / Elite</span>
 </footer>
+
+<script>
+// Races are pre-sorted as of the last edit; this moves any race whose
+// data-end has since passed into Past (most recent first).
+(function(){
+  var today=new Date().toISOString().slice(0,10);
+  var past=document.getElementById('past');
+  document.querySelectorAll('#upcoming .race-item').forEach(function(el){
+    if(el.dataset.end<today){el.classList.add('past');past.prepend(el)}
+  });
+})();
+</script>
 
 </body>
 </html>
